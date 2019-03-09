@@ -17,16 +17,16 @@ Usersモデル
 |email|string|
 |password_digest|stirng|
 
-Travelsモデル
+Labelsモデル
 
 |カラム名|データ型|
 ---|---
-|lavel_name|stirng|
+|label_name|stirng|
 
-Middlesモデル
+Tagsモデル
 
 |カラム名|データ型|
 ---|---
 |task_id|integer|
-|lavel_id|integer|
+|label_id|integer|
 
