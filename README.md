@@ -2,7 +2,7 @@ Tasksモデル
 
 |カラム名|データ型|
 ---|---
-|task_name|stirng|
+|name|stirng|
 |content|text|
 |deadline|date|
 |status|string|
@@ -21,7 +21,7 @@ Labelsモデル
 
 |カラム名|データ型|
 ---|---
-|label_name|stirng|
+|name|stirng|
 
 Tagsモデル
 
