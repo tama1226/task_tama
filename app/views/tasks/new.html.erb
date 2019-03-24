@@ -1,6 +1,6 @@
 <h1>タスクの新規登録</h1>
 
-<%= link_to 'タスク一覧表',tasks_path %>
+<%= link_to 'タスク一覧表',tasks_path %><br>
 
 <%= form_with(model: @task, local: true) do |form| %>
   <%= form.label :name %>
