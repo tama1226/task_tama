@@ -45,13 +45,15 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   scenario "タスク詳細のテスト" do
   # あらかじめタスク詳細のテストで使用するためのタスクを仮作成
-    Task.create!(name: 'test_task_03', content: 'test3')
+    task = Task.create!(name: 'test_task_03', content: 'test3')
 
-  # task_pathにvisitする（詳細ページに遷移する）
-    visit tasks_path
+  # タスク詳細ページに遷移
+    visit task_path(task[:id])
 
   # visitした（到着した）expect(page)に（タスク詳細ページに）「test_task_03」「test3」という文字列が
-  # have_contentされているか？（含まれているか？）ということをexpectする（確認・期待する）テストを書いている
+  # have_contentされているか？（含まれているか？）ということをexpectする（確認・期待する）テスト
+  # 詳細ページに遷移したことを確認したいので「各タスク詳細画面」という文字列の含みも確認
+    expect(page).to have_content '各タスク詳細画面'
     expect(page).to have_content 'test_task_03'
     expect(page).to have_content 'test3'
   end
