@@ -4,12 +4,14 @@ require 'rails_helper'
 # このRSpec.featureの右側に、「タスク管理機能」のように、テスト項目の名称を書きます（do ~ endでグループ化されています）
 RSpec.feature "タスク管理機能", type: :feature do
   # scenario（itのalias）の中に、確認したい各項目のテストの処理を書きます。
+  background do
+  # あらかじめタスク一覧のテストで使用するためのタスクを二つ作成する
+  FactoryBot.create(:task)
+  FactoryBot.create(:second_task)
+  end
+end
 
   scenario "タスク一覧のテスト" do
-  # あらかじめタスク一覧のテストで使用するためのタスクを二つ作成する
-    Task.create!(name: 'test_task_01', content: 'testtesttest')
-    Task.create!(name: 'test_task_02', content: 'samplesample')
-
   # tasks_pathにvisitする（タスク一覧ページに遷移する）
     visit tasks_path
 
@@ -27,14 +29,14 @@ RSpec.feature "タスク管理機能", type: :feature do
   # 「タスク名」というラベル名の入力欄と、「タスク詳細」というラベル名の入力欄に
   # タスクのタイトルと内容をそれぞれfill_in（入力）する
   # 2.ここに「タスク名」というラベル名の入力欄に内容をfill_in（入力）する処理を書く
-    fill_in 'Name',with:'work'
+    fill_in 'タスク名',with:'work'
 
   # 3.ここに「タスク詳細」というラベル名の入力欄に内容をfill_in（入力）する処理を書く
-    fill_in 'Content',with:'practice'
+    fill_in '詳細',with:'practice'
 
   # 「登録する」というvalue（表記文字）のあるボタンをclick_onする（クリックする）
   # 4.「登録する」というvalue（表記文字）のあるボタンをclick_onする（クリックする）する処理を書く
-    click_on 'Create Task'
+    click_on '登録する'
 
   # clickで登録されたはずの情報が、タスク詳細ページに表示されているかを確認する
   # （タスクが登録されたらタスク詳細画面に遷移されるという前提）
@@ -56,5 +58,11 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(page).to have_content '各タスク詳細画面'
     expect(page).to have_content 'test_task_03'
     expect(page).to have_content 'test3'
+  end
+
+  scenario "タスクが作成日時の降順に並んでいるかのテスト" do
+  #タスクが作成日時の降順に並んでいる
+    Task.all.order(created_at: :desc)
+  
   end
 end
