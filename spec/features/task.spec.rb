@@ -14,8 +14,8 @@ RSpec.feature "タスク管理機能", type: :feature do
   # tasks_pathにvisitする（タスク一覧ページに遷移する）
     visit tasks_path
   # タスク一覧ページに、テストコードで作成したはずのデータ（記述）がhave_contentされているか（含まれているか）を確認（期待）するコードを書く
-    expect(page).to have_content 'sampleタイトル1' 
-    expect(page).to have_content 'sample詳細1'
+    expect(page).to have_content 'factory_name_1'
+    expect(page).to have_content 'factory_詳細1'
   end
 
   scenario "タスク作成のテスト" do
@@ -35,18 +35,19 @@ RSpec.feature "タスク管理機能", type: :feature do
   end
 
   scenario "タスク詳細のテスト" do
+    #binding.pry
   # タスク詳細ページに遷移
     visit task_path(task[:id])
   # タスク詳細ページに、テストコードで作成したはずのデータ（記述）がhave_contentされているか（含まれているか）を確認（期待）するコードを書く
-    expect(page).to have_content 'sampleタイトル1'
-    expect(page).to have_content 'sample詳細1'
+    expect(page).to have_content 'factory_name_1'
+    expect(page).to have_content 'factory_詳細1'
   end
 
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
   #タスクが作成日時の降順に並んでいる
-  Task.create(id: 1, name: 'sampleタイトル1', updated_at: Time.current + 1.days)
-  Task.create(id: 2, name: 'sampleタイトル2', updated_at: Time.current + 2.days)
-
-  expect(Task.order("updated_at DESC").map(&:id)).to eq [2,1]
+  #Task.create(id: 1, name: 'factory_name_1', updated_at: Time.current + 1.days)
+  #Task.create(id: 2, name: 'factory_name_2', updated_at: Time.current + 2.days)
+  #binding.pry
+  expect(Task.order("updated_at DESC").map(&:id)).to eq [9,8]
   end
 end
