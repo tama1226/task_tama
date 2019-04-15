@@ -6,8 +6,8 @@ RSpec.feature "タスク管理機能", type: :feature do
   # scenario（itのalias）の中に、確認したい各項目のテストの処理を書きます。
   background do
   # あらかじめタスク一覧のテストで使用するためのタスクを二つ作成する
-  FactoryBot.create(:task)
-  FactoryBot.create(:second_task)
+  @task1=FactoryBot.create(:task)
+  @task2=FactoryBot.create(:second_task)
   end
 
   scenario "タスク一覧のテスト" do
@@ -37,7 +37,7 @@ RSpec.feature "タスク管理機能", type: :feature do
   scenario "タスク詳細のテスト" do
     #binding.pry
   # タスク詳細ページに遷移
-    visit task_path(task[:id])
+    visit task_path(@task1)
   # タスク詳細ページに、テストコードで作成したはずのデータ（記述）がhave_contentされているか（含まれているか）を確認（期待）するコードを書く
     expect(page).to have_content 'factory_name_1'
     expect(page).to have_content 'factory_詳細1'
