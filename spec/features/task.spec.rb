@@ -35,7 +35,6 @@ RSpec.feature "タスク管理機能", type: :feature do
   end
 
   scenario "タスク詳細のテスト" do
-    #binding.pry
   # タスク詳細ページに遷移
     visit task_path(@task1)
   # タスク詳細ページに、テストコードで作成したはずのデータ（記述）がhave_contentされているか（含まれているか）を確認（期待）するコードを書く
