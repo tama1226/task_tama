@@ -7,6 +7,7 @@
     <th>タスク名</th>
     <th>詳細</th>
     <th>作成日時</th>
+    <th>終了期限</th>
   </tr>
 
 <% @tasks.each do |task| %>
@@ -14,6 +15,7 @@
     <td><%= task.name %></td>
     <td><%= task.content %></td>
     <td><%= task.created_at %></td>
+    <td><%= task.end %></td>
 
     <td><%= link_to '詳細画面',task_path(task.id) %></td>
     <td><%= link_to '編集画面',edit_task_path(task.id) %></td>
