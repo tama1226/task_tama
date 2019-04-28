@@ -2,7 +2,13 @@ class TasksController < ApplicationController
   before_action :set_task,only:[:show,:edit,:update,:destroy]
 
   def index
-    @tasks=Task.all.order(created_at: :desc)
+    @tasks=Task.all.order(params[:sort_expired])
+    binding.pry
+      if params[:sort_expired].present?
+        Task.all.order(deadline: :desc)
+      else
+        Task.all.order(created_at: :desc)
+      end
   end
 
   def show
@@ -14,8 +20,7 @@ class TasksController < ApplicationController
 
   def create
     @task=Task.new(task_params)
-    #binding.pry
-
+    
     if @task.save
       redirect_to tasks_url, notice: "タスクの登録が完了しました！"
     else
