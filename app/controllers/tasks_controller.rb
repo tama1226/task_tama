@@ -14,6 +14,7 @@ class TasksController < ApplicationController
 
   def create
     @task=Task.new(task_params)
+    #binding.pry
 
     if @task.save
       redirect_to tasks_url, notice: "タスクの登録が完了しました！"
@@ -39,7 +40,7 @@ class TasksController < ApplicationController
   private
   
   def task_params
-    params.require(:task).permit(:name,:content)
+    params.require(:task).permit(:name,:content,:deadline)
   end
 
   def set_task
