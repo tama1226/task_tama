@@ -2,9 +2,9 @@ class TasksController < ApplicationController
   before_action :set_task,only:[:show,:edit,:update,:destroy]
 
   def index
-    @tasks=Task.all.order(params[:sort_expired])
+    @task=Task.all.order(params[:sort_expired])
     binding.pry
-      if params[:sort_expired].present?
+      if params[:sort_expired]
         Task.all.order(deadline: :desc)
       else
         Task.all.order(created_at: :desc)
@@ -41,7 +41,6 @@ class TasksController < ApplicationController
     redirect_to tasks_url, notice: "タスクを削除しました！"
   end
   
-
   private
   
   def task_params
