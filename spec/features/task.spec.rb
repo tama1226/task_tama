@@ -44,9 +44,12 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
   #タスクが作成日時の降順に並んでいる
-  #Task.create(id: 1, name: 'factory_name_1', updated_at: Time.current + 1.days)
-  #Task.create(id: 2, name: 'factory_name_2', updated_at: Time.current + 2.days)
-  #binding.pry
-  expect(Task.order("updated_at DESC").map(&:id)).to eq [9,8]
+  expect(Task.order("updated_at DESC").map(&:id))
+  end
+
+  scenario "タスクが終了期限の降順に並んでいるかのテスト" do
+  visit tasks_path(sort_expired: "true")
+  #タスクが終了期限の降順に並んでいる
+  expect(Task.order("deadline DESC").map(&:id))
   end
 end
