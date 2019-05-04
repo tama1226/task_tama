@@ -18,7 +18,7 @@ Tasksモデル
 ---|---
 |name|stirng|
 |content|text|
-|deadline|date|
+|end|date|
 |status|string|
 |priority|string|
 |user_id|integer|
