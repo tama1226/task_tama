@@ -7,3 +7,4 @@ ja:
         name: "タスク名"
         content: "詳細"
         deadline: "終了期限"
+        status: "状態"
