@@ -2,6 +2,14 @@
 
 <p><%= notice %></p>
 
+<%= form_tag(tasks_path, method: "get") do %>
+  <%= label_tag :name, "タイトル" %><%= text_field_tag :title, params[:title] %>
+  <%= label_tag :name, "状態" %><%= text_field_tag :status, params[:status] %>
+  <%= submit_tag "検索" %>
+<% end %>
+
+<br>
+
 <table>
   <tr>
     <th>タスク名</th>
