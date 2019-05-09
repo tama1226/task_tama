@@ -8,6 +8,13 @@ class TasksController < ApplicationController
       else
         @task=Task.all
       end
+
+      if params[:name].present? 
+        @task=@task.get_by_name params[:name]
+      end
+      if params[:status].present?
+        @task=@task.get_by_status params[:status]
+      end         
   end
 
   def show
