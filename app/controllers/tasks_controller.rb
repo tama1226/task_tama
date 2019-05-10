@@ -9,6 +9,12 @@ class TasksController < ApplicationController
         @task=Task.all
       end
 
+      if params[:sort_priority]
+        @task=Task.all.order(priority: :asc)
+      else
+        @task=Task.all
+      end
+
       if params[:name].present? 
         @task=@task.get_by_name params[:name]
       end
