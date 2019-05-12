@@ -56,7 +56,9 @@ RSpec.feature "タスク管理機能", type: :feature do
     visit tasks_path
     #「タスク名」に「fa」と入力
     fill_in 'タスク名', with: 'fa'
+    #save_and_open_page
     #タスク名で「fa」を含むタスクを検索
     expect(page).to have_content 'factory_name_1'
-    end
+  end
+
 end
