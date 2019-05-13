@@ -18,12 +18,15 @@ RSpec.describe Task, type: :model do
   end
 
   describe "get_by_nameがきちんとscopeとして使えるか" do
-    describe "get_by_name" do
-        let!(:scope_task) { Task.new(name: 'タスク1') }
-        binding.pry
-        subject { Task.get_by_name }
-        it { is_expected.to include scope_task }
-    end
+    let!(:scope_task) { Task.create(name: 'タスク1',content: '内容1',status: '未着手') }
+    subject { Task.get_by_name('タスク1') }
+    it { is_expected.to include scope_task }
+  end
+
+  describe "get_by_statusがきちんとscopeとして使えるか" do
+    let!(:scope_task) { Task.create(name: 'タスク1',content: '内容1',status: '未着手') }
+    subject { Task.get_by_status('未着手') }
+    it { is_expected.to include scope_task}
   end
 
 end
