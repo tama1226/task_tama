@@ -18,18 +18,18 @@ RSpec.describe Task, type: :model do
   end
 
   it "モデルに作成したscopeを使用し、タスク名による検索ができる" do
-    task = Task.new(name: "aaabbb", content: "タイトルによる検索", deadline: '2019-05-12T12:30:45', status: '未着手')
+    task = Task.new(name: "aaabbb",status: '未着手')
     task.save
-    expect_task_name = Task.where(name: "aaabbb").first.name
-    search_name = Task.get_by_name(params[:name]).first.name
+    expect_task_name = Task.where(name: "aaa").first
+    search_name = Task.get_by_name(:task)
     expect(search_name).to eq expect_task_name
   end
   
   it "モデルに作成したscopeを使用し、statusによる検索ができる" do
-    task = Task.new(name: "aaabbb", content: "タイトルによる検索", deadline: '2019-05-12T12:30:45', status: '未着手')
+    task = Task.new(name: "aaabbb",status: '未着手')
     task.save
-    expect_task_status = Task.where(status: "未着手").first.status
-    search_status = Task.get_by_status(params[:status]).first.status
+    expect_task_status = Task.where(status: "着手").first
+    search_status = Task.get_by_status(:task)
     expect(search_status).to eq expect_task_status
   end
 
