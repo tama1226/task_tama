@@ -21,16 +21,16 @@ RSpec.feature "タスク管理機能", type: :feature do
   # new_task_pathにvisitする（タスク登録ページに遷移する）
     visit new_task_path
   # タスクのタイトルと内容をそれぞれfill_in（入力）する
-    fill_in 'タスク名',with:'work'
-    fill_in '詳細',with:'practice'
+    fill_in 'タスク名',with:'factory_name_1'
+    fill_in '詳細',with:'factory_詳細1'
 
   #「登録する」というvalue（表記文字）のあるボタンをclick_onする（クリックする）
     click_on '登録する'
 
   # clickで登録されたはずの情報が、タスク詳細ページに表示されているかを確認する
   # タスク詳細ページに、テストコードで作成したはずのデータ（記述）がhave_contentされているか（含まれているか）を確認（期待）するコードを書く
-    expect(page).to have_content 'work' 
-    expect(page).to have_content 'practice'
+    expect(page).to have_content 'factory_name_1' 
+    expect(page).to have_content 'factory_詳細1'
   end
 
   scenario "タスク詳細のテスト" do
@@ -58,5 +58,11 @@ RSpec.feature "タスク管理機能", type: :feature do
     fill_in 'タスク名', with: 'fa'
     #タスク名で「fa」を含むタスクを検索
     expect(page).to have_content 'factory_name_1'
-    end
+  end
+
+  scenario "タスクが優先順位の高い順に並んでいるかのテスト" do
+      visit tasks_path(sort_priority: "true")
+     #タスクが優先順位の高い順に並んでいる
+      expect(Task.order("priority ASC").map(&:id))
+  end
 end
