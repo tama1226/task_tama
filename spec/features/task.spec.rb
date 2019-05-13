@@ -26,7 +26,6 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   #「登録する」というvalue（表記文字）のあるボタンをclick_onする（クリックする）
     click_on '登録する'
-    binding.pry
   # clickで登録されたはずの情報が、タスク詳細ページに表示されているかを確認する
   # タスク詳細ページに、テストコードで作成したはずのデータ（記述）がhave_contentされているか（含まれているか）を確認（期待）するコードを書く
     expect(page).to have_content 'factory_name_1' 
