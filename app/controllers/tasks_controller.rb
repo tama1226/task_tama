@@ -3,12 +3,18 @@ class TasksController < ApplicationController
 
   def index
     @task=Task.all.order(created_at: :desc)
-    #binding.pry
       if params[:sort_expired]
         @task=Task.all.order(deadline: :desc)
       else
         @task=Task.all
       end
+    
+      if params[:name].present? 
+        @task=@task.get_by_name params[:name]
+      end
+      if params[:status].present?
+        @task=@task.get_by_status params[:status]
+      end         
   end
 
   def show
@@ -44,7 +50,7 @@ class TasksController < ApplicationController
   private
   
   def task_params
-    params.require(:task).permit(:name,:content,:deadline)
+    params.require(:task).permit(:name,:content,:deadline,:status)
   end
 
   def set_task

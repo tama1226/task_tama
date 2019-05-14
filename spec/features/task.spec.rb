@@ -1,4 +1,3 @@
-# このrequireで、Capybaraなどの、Feature Specに必要な機能を使用可能な状態にしています
 require 'rails_helper'
 
 # このRSpec.featureの右側に、「タスク管理機能」のように、テスト項目の名称を書きます（do ~ endでグループ化されています）
@@ -44,12 +43,22 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
   #タスクが作成日時の降順に並んでいる
-  expect(Task.order("updated_at DESC").map(&:id))
+   expect(Task.order("updated_at DESC").map(&:id))
   end
 
   scenario "タスクが終了期限の降順に並んでいるかのテスト" do
-  visit tasks_path(sort_expired: "true")
+   visit tasks_path(sort_expired: "true")
   #タスクが終了期限の降順に並んでいる
-  expect(Task.order("deadline DESC").map(&:id))
+   expect(Task.order("deadline DESC").map(&:id))
   end
+
+  scenario "「タスク名」で検索のテスト" do
+    visit tasks_path
+    #「タスク名」に「fa」と入力
+    fill_in 'タスク名', with: 'fa'
+    #save_and_open_page
+    #タスク名で「fa」を含むタスクを検索
+    expect(page).to have_content 'factory_name_1'
+  end
+
 end

@@ -2,12 +2,25 @@
 
 <p><%= notice %></p>
 
+<%= form_tag(tasks_path, method: "get") do %>
+  <%= label_tag :name, "タスク名" %>
+  <%= text_field_tag :name, params[:name] %>
+
+  <%= label_tag :name, "状態" %>
+  <%= text_field_tag :status, params[:status] %>
+  
+  <%= submit_tag "検索" %>
+<% end %>
+
+<br>
+
 <table>
   <tr>
     <th>タスク名</th>
     <th>詳細</th>
     <th>作成日時</th>
     <th>終了期限</th>
+    <th>状態</th>
   </tr>
 
 <% @task.each do |task| %>
@@ -16,6 +29,7 @@
     <td><%= task.content %></td>
     <td><%= task.created_at %></td>
     <td><%= task.deadline %></td>
+    <td><%= task.status %></td>
 
     <td><%= link_to '詳細画面',task_path(task.id) %></td>
     <td><%= link_to '編集画面',edit_task_path(task.id) %></td>
