@@ -59,9 +59,19 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(page).to have_content 'factory_name_1'
   end
 
-  scenario "タスクが優先順位の高い順に並んでいるかのテスト" do
+  scenario "タスクが優先順位の高い順に並んでいるかのテスト1" do
     visit tasks_path(sort_priority: "true")
     #タスクが優先順位の高い順に並んでいる
+    expect(Task.order("priority ASC").map(&:id))
+  end
+
+  scenario "タスクが優先順位の高い順に並んでいるかのテスト2" do
+    first_task = Task.first
+    second_task  = Task.second
+    third_task = Task.third
+    
+    visit tasks_path(sort_priority: "true")
+
     expect(Task.order("priority ASC").map(&:id))
   end
 end
