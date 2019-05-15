@@ -7,6 +7,7 @@ RSpec.feature "タスク管理機能", type: :feature do
   # あらかじめタスク一覧のテストで使用するためのタスクを二つ作成する
   @task1=FactoryBot.create(:task)
   @task2=FactoryBot.create(:second_task)
+  @task3=FactoryBot.create(:third_task)
   end
 
   scenario "タスク一覧のテスト" do
@@ -59,19 +60,12 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(page).to have_content 'factory_name_1'
   end
 
-  scenario "タスクが優先順位の高い順に並んでいるかのテスト1" do
+  scenario "タスクが優先順位の高い順に並んでいるかのテスト" do
+  #テストデータがある前提 
     visit tasks_path(sort_priority: "true")
-    #タスクが優先順位の高い順に並んでいる
+  #「優先順位の昇順に並べ替えを行う」
     expect(Task.order("priority ASC").map(&:id))
-  end
-
-  scenario "タスクが優先順位の高い順に並んでいるかのテスト2" do
-    first_task = Task.first
-    second_task  = Task.second
-    third_task = Task.third
-    
-    visit tasks_path(sort_priority: "true")
-
-    expect(Task.order("priority ASC").map(&:id))
+  #優先順位が「高」のthird_taskが最初にくる
+    expect(Task.first.name).to eq 'factory_name_3'
   end
 end

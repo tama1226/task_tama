@@ -6,6 +6,7 @@ FactoryBot.define do
     factory :task do
       name { 'factory_name_1' }
       content { 'factory_詳細1' }
+      priority { '低' }
     end
   
     # 作成するテストデータの名前を「second_task」とします
@@ -13,5 +14,12 @@ FactoryBot.define do
     factory :second_task, class: Task do
       name {'factory_name_2'}
       content { 'factrory_詳細2'}
+      priority { '中' }
+    end
+
+    factory :third_task, class: Task do
+      name {'factory_name_3'}
+      content { 'factrory_詳細3'}
+      priority { '高' }
     end
   end
