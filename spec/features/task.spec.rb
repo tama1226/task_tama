@@ -61,11 +61,14 @@ RSpec.feature "タスク管理機能", type: :feature do
   end
 
   scenario "タスクが優先順位の高い順に並んでいるかのテスト" do
-  #テストデータがある前提 
+  #テストデータを3つ用意
+  #「優先順位が高い順に並べ替えをする」リンクへ
     visit tasks_path(sort_priority: "true")
-  #「優先順位の昇順に並べ替えを行う」
-    expect(Task.order("priority ASC").map(&:id))
-  #優先順位が「高」のthird_taskが最初にくる
-    expect(Task.first.name).to eq 'factory_name_3'
+    
+    save_and_open_page
+  # 該当の詳細画面をクリック
+    all('table td')[6].click_link '詳細画面'
+  # 該当の文字列が含まれている
+    expect(page).to have_content 'factory_name_3'
   end
 end

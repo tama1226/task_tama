@@ -13,13 +13,13 @@ FactoryBot.define do
     # （存在しないクラス名の名前をつける場合、オプションで「このクラスのテストデータにしてください」と指定します）
     factory :second_task, class: Task do
       name {'factory_name_2'}
-      content { 'factrory_詳細2'}
+      content { 'factory_詳細2'}
       priority { '中' }
     end
 
     factory :third_task, class: Task do
       name {'factory_name_3'}
-      content { 'factrory_詳細3'}
+      content { 'factory_詳細3'}
       priority { '高' }
     end
   end
