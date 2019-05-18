@@ -14,7 +14,7 @@ class TasksController < ApplicationController
       else
         @task=Task.all
       end
-
+    
       if params[:name].present? 
         @task=@task.get_by_name params[:name]
       end
