@@ -7,6 +7,7 @@ RSpec.feature "タスク管理機能", type: :feature do
   # あらかじめタスク一覧のテストで使用するためのタスクを二つ作成する
   @task1=FactoryBot.create(:task)
   @task2=FactoryBot.create(:second_task)
+  @task3=FactoryBot.create(:third_task)
   end
 
   scenario "タスク一覧のテスト" do
@@ -21,16 +22,15 @@ RSpec.feature "タスク管理機能", type: :feature do
   # new_task_pathにvisitする（タスク登録ページに遷移する）
     visit new_task_path
   # タスクのタイトルと内容をそれぞれfill_in（入力）する
-    fill_in 'タスク名',with:'work'
-    fill_in '詳細',with:'practice'
+    fill_in 'タスク名',with:'factory_name_1'
+    fill_in '詳細',with:'factory_詳細1'
 
   #「登録する」というvalue（表記文字）のあるボタンをclick_onする（クリックする）
     click_on '登録する'
-
   # clickで登録されたはずの情報が、タスク詳細ページに表示されているかを確認する
   # タスク詳細ページに、テストコードで作成したはずのデータ（記述）がhave_contentされているか（含まれているか）を確認（期待）するコードを書く
-    expect(page).to have_content 'work' 
-    expect(page).to have_content 'practice'
+    expect(page).to have_content 'factory_name_1' 
+    expect(page).to have_content 'factory_詳細1'
   end
 
   scenario "タスク詳細のテスト" do
@@ -61,4 +61,15 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(page).to have_content 'factory_name_1'
   end
 
+  scenario "タスクが優先順位の高い順に並んでいるかのテスト" do
+  #テストデータを3つ用意
+  #「優先順位が高い順に並べ替えをする」リンクへ
+    visit tasks_path(sort_priority: "true")
+    
+    save_and_open_page
+  # 該当の詳細画面をクリック
+    all('table td')[6].click_link '詳細画面'
+  # 該当の文字列が含まれている
+    expect(page).to have_content 'factory_name_3'
+  end
 end

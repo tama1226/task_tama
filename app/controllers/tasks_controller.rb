@@ -8,6 +8,12 @@ class TasksController < ApplicationController
       else
         @task=Task.all
       end
+
+      if params[:sort_priority]
+        @task=Task.all.order(priority: :asc)
+      else
+        @task=Task.all
+      end
     
       if params[:name].present? 
         @task=@task.get_by_name params[:name]
@@ -50,7 +56,7 @@ class TasksController < ApplicationController
   private
   
   def task_params
-    params.require(:task).permit(:name,:content,:deadline,:status)
+    params.require(:task).permit(:name,:content,:deadline,:status,:priority)
   end
 
   def set_task
