@@ -12,6 +12,8 @@
   <%= submit_tag "検索" %>
 <% end %>
 
+<%= paginate @tasks %>
+
 <br>
 
 <table>
@@ -24,7 +26,7 @@
     <th>優先順位</th>
   </tr>
 
-<% @task.each do |task| %>
+<% @tasks.each do |task| %>
   <tr>
     <td><%= task.name %></td>
     <td><%= task.content %></td>
