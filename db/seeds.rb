@@ -6,6 +6,6 @@
     User.create(
       name: name,
       email: email,
-      password_digest: password_digest
+      password_digest: password
                )
   end
