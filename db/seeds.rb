@@ -1,9 +1,11 @@
 50.times do |n|
-    name = Faker::Name.name
-    content = "task1"
+    name = Faker::Pokemon.name
+    email = Faker::Internet.email
+    password_digest = "pass"
 
-    Task.create(
+    User.create(
       name: name,
-      content: content
+      email: email,
+      password_digest: password_digest
                )
   end
