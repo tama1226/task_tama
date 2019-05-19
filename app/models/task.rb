@@ -6,7 +6,7 @@ class Task < ApplicationRecord
   validates :content, presence: true
   validates :content, length: { maximum: 50 }
 
-  belongs_to :user, optional: true
+  belongs_to :user
 
   scope :get_by_name, ->(name){where("name like?", "%#{name}%")}
   scope :get_by_status, ->(status){where("status like?", "%#{status}%")}
