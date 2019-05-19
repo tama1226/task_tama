@@ -1,8 +1,17 @@
-<h1>タスク一覧表</h1>
+<nav class="navbar　navbar-light bg-info text-right">
+  <span class="navbar-text">
+    <h1>タスク一覧表</h1>
+    <a class="btn" type="button" href="tasks/new">タスクの新規登録</a>
+  </span>  
+</nav>
 
-<p><%= notice %></p>
+<div class="bg-light">
 
-<%= form_tag(tasks_path, method: "get") do %>
+  <p><%= notice %></p>
+
+  <br>
+
+  <%= form_tag(tasks_path, method: "get") do %>
   <%= label_tag :name, "タスク名" %>
   <%= text_field_tag :name, params[:name] %>
 
@@ -10,14 +19,17 @@
   <%= text_field_tag :status, params[:status] %>
   
   <%= submit_tag "検索" %>
-<% end %>
+  <% end %>
 
-<%= paginate @tasks %>
+  <%= link_to "終了期限で並べ替えをする", tasks_path(sort_expired: "true") %>
 
-<br>
+  <br>
 
-<div class="container">
-  <table class="table">
+  <%= link_to "優先順位が高い順に並べ替えをする", tasks_path(sort_priority: "true") %>
+
+  <%= paginate @tasks %>
+
+  <table class="table text-center p-3 mb-2 bg-dark text-white">
     <tr>
       <th scope="row">タスク名</th>
       <th scope="row">詳細</th>
@@ -42,15 +54,5 @@
     </tr>
   <% end %>
   </table>
+
 </div>
-<br>
-
-<%= link_to 'タスクの新規登録', new_task_path %>
-
-<br>
-
-<%= link_to "終了期限で並べ替えをする", tasks_path(sort_expired: "true") %>
-
-<br>
-
-<%= link_to "優先順位が高い順に並べ替えをする", tasks_path(sort_priority: "true") %>
