@@ -2,9 +2,8 @@ class TasksController < ApplicationController
   before_action :set_task,only:[:show,:edit,:update,:destroy]
 
   def index
-    @tasks= Task.order(created_at: :desc)
 
-    @tasks = @tasks.page(params[:page]).per(10)
+    @tasks= Task.order(created_at: :desc).page(params[:page]).per(10)
     
       if params[:sort_expired]
         @tasks=@tasks.order(deadline: :desc)
