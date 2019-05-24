@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   skip_before_action :login_required
 
   def new
+    #ログイン中なら、新規ユーザー登録画面には遷移しない
     if logged_in?
       redirect_to user_path(current_user.id)
       flash[:notice] = 'ログイン中'
