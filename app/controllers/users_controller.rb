@@ -23,8 +23,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user=User.find(params[:id])
-  end
+    #各ユーザーの詳細ページはログインユーザーしか見れない
+    if current_user.id == params[:id]
+      @user=User.find(params[:id])
+    else
+      redirect_to tasks_path
+    end
+　 end
 
   private
 
