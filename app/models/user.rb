@@ -5,7 +5,7 @@ class User < ApplicationRecord
   
   before_validation { email.downcase! }
   
-  validates :password_digest, presence: true, length: { minimum: 4 }
+  validates :password, presence: true, length: { minimum: 4 }
   has_secure_password
 
   has_many :tasks
