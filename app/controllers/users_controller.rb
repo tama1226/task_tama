@@ -3,7 +3,12 @@ class UsersController < ApplicationController
   skip_before_action :login_required
 
   def new
-    @user=User.new
+    if logged_in?
+      redirect_to user_path(current_user.id)
+      flash[:notice] = 'ログイン中'
+    else
+      @user=User.new
+    end
   end
 
   def create
