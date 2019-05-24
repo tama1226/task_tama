@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def create
     @user=User.new(user_params)
       if @user.save
-        #ユーザー登録後に詳細ページに遷移
+        #ユーザー登録後に詳細ページに遷移（同時にログイン）
         redirect_to user_path(@user.id)
       else
         render 'new'
