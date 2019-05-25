@@ -66,7 +66,7 @@ RSpec.feature "タスク管理機能", type: :feature do
   #「優先順位が高い順に並べ替えをする」リンクへ
     visit tasks_path(sort_priority: "true")
     
-    save_and_open_page
+    #save_and_open_page
   # 該当の詳細画面をクリック
     all('table td')[6].click_link '詳細画面'
   # 該当の文字列が含まれている

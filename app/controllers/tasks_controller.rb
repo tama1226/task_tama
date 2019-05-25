@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task,only:[:show,:edit,:update,:destroy]
 
   def index
-    @tasks= Task.all
+    @tasks= current_user.tasks
     @tasks= @tasks.page(params[:page]).per(10)
     
       if params[:sort_expired]
@@ -29,7 +29,8 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task=Task.new(task_params)
+    #ログイン中のユーザーのタスク登録
+    @task=current_user.tasks.new(task_params)
     
     if @task.save
       redirect_to tasks_url, notice: "タスクの登録が完了しました！"
@@ -58,6 +59,6 @@ class TasksController < ApplicationController
   end
 
   def set_task
-    @task=Task.find(params[:id])
+    @task=current_user.tasks.find(params[:id])
   end
 end
