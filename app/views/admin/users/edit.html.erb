@@ -1,2 +1,21 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+
+
+<%= form_with(model: @user, local: true) do |form| %>
+
+    <%= form.label :name %>
+    <%= form.text_field :name %><br>
+  
+    <%= form.label :email %>
+    <%= form.email_field :email %><br>
+  
+    <%= form.label :admin %>
+    <%= form.check_box :admin %><br>
+  
+    <%= form.label :password %>
+    <%= form.password_field :password%><br>
+  
+    <%= form.label :password_cofirmation %>
+    <%= form.password_field :password_cofirmation%><br>
+    
+    <%= form.submit %>
+  <% end %>
