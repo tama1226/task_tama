@@ -1,15 +1,54 @@
 require 'rails_helper'
 
-# このRSpec.featureの右側に、「タスク管理機能」のように、テスト項目の名称を書きます（do ~ endでグループ化されています）
 RSpec.feature "ユーザーテスト機能", type: :feature do
-  # scenario（itのalias）の中に、確認したい各項目のテストの処理を書きます。
+
   background do
-  # あらかじめタスク一覧のテストで使用するためのタスクを二つ作成する
+  # あらかじめタスク一覧のテストで使用するためのユーザーを作成する
   @user1=FactoryBot.create(:user)
   end
 
-  scenario "バリデーション" do
-  
+  before do
+  #ログイン画面から、まずはログイン
+    visit new_session_path
+
+    fill_in 'Email', with: 'DIC@dic.com'
+    fill_in 'Password', with: 'password'
+    click_button 'Log in'
+  end
+
+  scenario "ユーザー一覧のテスト" do
+    visit admin_users_path
+
+    expect(page).to have_content 'DIC'
+  end
+
+  scenario "ユーザー作成のテスト" do
+    visit admin_users_path
+
+    click_on '新規ユーザー登録'
+
+    fill_in 'Name',with:'User'
+    fill_in 'Email',with:'user@user.com'
+    fill_in 'Password',with:'user'
+    fill_in 'Password confirmation',with:'user'
+
+    expect(page).to have_content 'User'
+  end
+
+  scenario "ユーザー詳細のテスト" do
+    visit admin_users_path
+
+    click_on '詳細画面'
+
+    expect(page).to have_content 'DIC'
+  end
+
+  scenario "ユーザー詳細のテスト" do
+    visit admin_users_path
+
+    click_on '詳細画面'
+
+    expect(page).to have_content 'DIC'
   end
 
 end
