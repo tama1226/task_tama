@@ -43,12 +43,29 @@ RSpec.feature "ユーザーテスト機能", type: :feature do
     expect(page).to have_content 'DIC'
   end
 
-  scenario "ユーザー詳細のテスト" do
+  scenario "ユーザー更新のテスト" do
     visit admin_users_path
 
-    click_on '詳細画面'
+    click_on '編集画面'
 
-    expect(page).to have_content 'DIC'
+    fill_in 'Name',with:'Admin'
+    fill_in 'Email',with:'admin@user.com'
+    fill_in 'Password',with:'admin'
+    fill_in 'Password confirmation',with:'admin'
+
+    click_on '更新する'
+
+    expect(page).to have_content 'Admin'
+  end
+
+  scenario "ユーザー削除のテスト" do
+    visit admin_users_path
+
+    click_on '削除'
+
+    save_and_open_page
+
+    expect(page).not_to have_content 'DIC'
   end
 
 end
