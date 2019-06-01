@@ -1,0 +1,21 @@
+<h1>ユーザ編集画面</h1>
+
+<%= form_with(model: @user, local: true, url:admin_user_path) do |form| %>
+
+    <%= form.label :name %>
+    <%= form.text_field :name %><br>
+  
+    <%= form.label :email %>
+    <%= form.email_field :email %><br>
+  
+    <%= form.label :admin %>
+    <%= form.check_box :admin %><br>
+  
+    <%= form.label :password %>
+    <%= form.password_field :password%><br>
+  
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation%><br>
+    
+    <%= form.submit %>
+  <% end %>

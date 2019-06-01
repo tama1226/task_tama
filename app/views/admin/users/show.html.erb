@@ -1,0 +1,18 @@
+<h1>各ユーザー詳細</h1>
+
+  <h2>id: <%= @user.id %></h2>
+  <h2>名前: <%= @user.name %></h2>
+  <h2>email: <%= @user.email %></h2>
+  <h2>管理者: <%= @user.admin? ? 'admin' : 'not admin' %></h2>
+
+  <% if @user.tasks.present? %>
+    <% @user.tasks.each do |task| %>
+      <p>id: <%= task.id %></p>
+      <p>タスク名　: <%= task.name %></p>
+      <p>詳細　: <%= task.content %></p>
+      <p>状態　: <%= task.status %></p>
+      <p>優先順位: <%= task.priority %></p>
+      <p>期限: <%= task.deadline %></p>
+    <% end %>
+  <% end %>
+

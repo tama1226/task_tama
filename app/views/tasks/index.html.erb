@@ -4,6 +4,10 @@
     <a class="btn" type="button" href="tasks/new">タスクの新規登録</a>
   </span> 
   <%= link_to "新規ユーザー登録画面", new_user_path %>
+
+  <% if current_user.admin? %>
+    <%= link_to "管理者画面", admin_users_path %>
+  <% end %>
 </nav>
 
 <div class="bg-light">
