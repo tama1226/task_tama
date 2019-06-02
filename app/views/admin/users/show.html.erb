@@ -3,7 +3,7 @@
   <h2>id: <%= @user.id %></h2>
   <h2>名前: <%= @user.name %></h2>
   <h2>email: <%= @user.email %></h2>
-  <h2>管理者: <%= @user.admin? ? 'admin' : 'not admin' %></h2>
+  <h2>管理者: <%= @user.admin? ? '管理者ユーザ' : '一般ユーザ' %></h2>
 
   <% if @user.tasks.present? %>
     <% @user.tasks.each do |task| %>
