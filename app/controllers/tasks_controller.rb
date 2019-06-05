@@ -13,14 +13,14 @@ class TasksController < ApplicationController
         @tasks=@tasks.order(priority: :asc)
       end
     
-      if params[:name].present? 
+      if params[:name]
         @tasks=@tasks.get_by_name params[:name]
       end
-      if params[:status].present?
+      if params[:status]
         @tasks=@tasks.get_by_status params[:status]
       end
 
-      if params[:label_id].present?
+      if params[:label_id]
       end
   end
 

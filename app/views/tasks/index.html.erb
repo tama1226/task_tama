@@ -16,17 +16,18 @@
 
   <br>
 
-  <%= form_tag(tasks_path, method: "get") do %>
-  <%= label_tag :name, "タスク名" %>
-  <%= text_field_tag :name, params[:name] %>
-
-  <%= label_tag :name, "状態" %>
-  <%= text_field_tag :status, params[:status] %>
-
-  <%= label_tag :name, "ラベル" %>
-  <%= select_tag :label_id,options_for_select([["label_1", "label_1"],["label_2","label_2"],["label_3","label_3"],["label_4","label_4"],["label_5","label_5"]]) %>
+  <%= form_with(model: @task, method: :get, url: tasks_path, local: true) do |f| %>
   
-  <%= submit_tag "検索" %>
+    <%= f.label :name, "タスク名" %>
+    <%= f.text_field :name %>
+
+    <%= f.label :status, "状態" %>
+    <%= f.text_field :status %>
+  
+    <%= f.label :label_id, "ラベル" %>
+    <%= f.select :label_id, Label.all.map{|t| [t.name, t.id]}, {include_blank: true, selected: ''} %>
+  
+    <%= f.submit "検索" %>
   <% end %>
 
   <%= link_to "終了期限で並べ替えをする", tasks_path(sort_expired: "true") %>
