@@ -7,6 +7,10 @@ class Task < ApplicationRecord
   validates :content, length: { maximum: 50 }
 
   belongs_to :user, optional: true
+  has_many :tags, dependent: :destroy
+  has_many :labels, through: :tags
+
+  accepts_nested_attributes_for :labels
 
   scope :get_by_name, ->(name){where("name like?", "%#{name}%")}
   scope :get_by_status, ->(status){where("status like?", "%#{status}%")}
