@@ -18,7 +18,12 @@ class TasksController < ApplicationController
       end
       if params[:status].present?
         @tasks=@tasks.get_by_status params[:status]
-      end      
+      end
+
+      if params[:label_id].present?
+        label = Label.find(params[:label_id])
+        @tasks = label.tasks.page(params[:page])
+      end
   end
 
   def show
