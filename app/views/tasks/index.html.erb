@@ -24,7 +24,7 @@
   <%= text_field_tag :status, params[:status] %>
 
   <%= label_tag :name, "ラベル" %>
-  <%= select_tag :label_id, params[:label_id] %>
+  <%= select_tag :label_id,options_for_select([["label_1", "label_1"],["label_2","label_2"],["label_3","label_3"],["label_4","label_4"],["label_5","label_5"]]) %>
   
   <%= submit_tag "検索" %>
   <% end %>

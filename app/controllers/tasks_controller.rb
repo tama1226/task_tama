@@ -21,8 +21,6 @@ class TasksController < ApplicationController
       end
 
       if params[:label_id].present?
-        label = Label.find(params[:label_id])
-        @tasks = label.tasks.page(params[:page])
       end
   end
 
