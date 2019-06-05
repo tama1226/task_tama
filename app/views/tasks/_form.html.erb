@@ -1,0 +1,36 @@
+<%= link_to 'タスク一覧表',tasks_path %><br>
+
+<%= form_with(model: @task, local: true) do |form| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @task.errors.count %>件のエラーです。</h2>
+        <ul>
+          <% @task.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+    </div>
+  <% end %>
+
+  <%= form.label :name %>
+  <%= form.text_field :name %><br>
+
+  <%= form.label :content %>
+  <%= form.text_field :content %><br>
+
+  <%= form.label :deadline %>
+  <%= form.date_field :deadline %><br>
+
+  <%= form.label :status %>
+  <%= form.select :status,[["完了","完了"],["着手中","着手中"],["未着手","未着手"]]%><br>
+
+  <%= form.label :priority %>
+  <%= form.select :priority,[["高","高"],["中","中"],["低","低"]]%><br>
+
+  <% Label.all.each do |label| %>
+    <%= form.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
+    <label><%= label.name %></label>
+  <% end %>
+  
+  <%= form.submit %>
+<% end %>
