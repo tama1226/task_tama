@@ -8,3 +8,8 @@
 <p>状態：<%= @task.status %></p>
 <p>優先順位：<%= @task.priority %></p>
 
+<% @task.labels.each do |label| %>
+  <p><%= label.id %></p>
+  <p><%= label.name %></p>
+<% end %>
+

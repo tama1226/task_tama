@@ -1,2 +1,5 @@
-
-
+Label.create(name: 'label_1')
+Label.create(name: 'label_2')
+Label.create(name: 'label_3')
+Label.create(name: 'label_4')
+Label.create(name: 'label_5')
