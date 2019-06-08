@@ -22,7 +22,7 @@ class TasksController < ApplicationController
 
     if params[:label_id].present?
       @tags=Tag.where(label_id: params[:label_id]).pluck(:task_id)
-      @tasks=@tasks.where(task.id=@tags)
+      @tasks=@tasks.where(id: @tags)
     end
   end
 
